@@ -1668,18 +1668,6 @@ input, select, textarea {
 			padding: 0.5em 1.25em 0.5em 1.25em;
 		}
 
-		@media screen and (max-width: 736px) {
-
-			input[type="button"],
-			input[type="submit"],
-			input[type="reset"],
-			button,
-			.button {
-				width: 100%;
-			}
-
-		}
-
 /* List */
 
 	ul {
@@ -1768,108 +1756,112 @@ input, select, textarea {
 		}
 
 /* Nav */
+/* Basic styles for larger screens (desktop view) */
+#nav {
+    display: flex; /* Display the menu items inline */
+    flex-direction: row; /* Horizontal layout */
+    justify-content: center; /* Center items horizontally */
+    text-align: center; /* Center items vertically */
+    background-color: #FFBE9F; /* Background color of the bar */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+	flex-wrap: nowrap; /* Ensure items don't wrap to the next line */
+}
 
-	#nav {
-		text-align: center;
-		height: 4.25em;
-		cursor: default;
-	}
+/* Style for individual menu items */
+#nav a {
+    display: inline-block; /* Fit items horizontally */
+    color: #0a0909; /* Text color */
+	align-items: center; /* Center items vertically */
+	justify-content: center; /* Center items horizontally */
+	padding: 0 1em; /* Padding around text */
+    font-size: 1em; /* Font size */
+    text-decoration: none; /* Remove underline */
+    background-color: #FFBE9F; /* Background color */
+    border-radius: 0; /* Rounded corners */
+    border-left: 1px solid #000000; /* Black line between items */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis if text is too long */
+    transition: background-color .25s ease-in-out, color .25s ease-in-out; /* Smooth transitions */
+}
 
-		#nav a {
-			position: relative;
-			display: inline-block;
-			color: #ffffff;
-			width: 1em;
-			height: 1em;
-			line-height: 0.9em;
-			font-size: 2.5em;
-			margin: 0 0.25em 0 0.25em;
-			opacity: 0.35;
-			outline: 0;
-			-moz-transition: opacity .25s ease-in-out;
-			-webkit-transition: opacity .25s ease-in-out;
-			-ms-transition: opacity .25s ease-in-out;
-			transition: opacity .25s ease-in-out;
-		}
+/* Remove the border for the first item */
+#nav a:first-child {
+    border-left: none; /* Remove left border for the first item */
+}
 
-			#nav a.icon:before {
-				padding-right: 0;
-			}
+/* Style for active link */
+#nav a.active {
+    background-color: #FFCFB2; /* Active link background color */
+    color: #020202; /* Active link text color */
+}
 
-			#nav a:before {
-				font-size: 0.8em;
-			}
+/* Menu Button Styles (initially hidden on larger screens) */
+#menu-button {
+    display: none; /* Hidden by default */
+}
 
-			#nav a:after {
-				content: '';
-				display: block;
-				position: absolute;
-				left: 50%;
-				bottom: -0.75em;
-				margin-left: -0.5em;
-				border-bottom: solid 0em #ffffff;
-				border-left: solid 0.5em transparent;
-				border-right: solid 0.5em transparent;
-				-moz-transition: border-bottom-width .25s ease-in-out;
-				-webkit-transition: border-bottom-width .25s ease-in-out;
-				-ms-transition: border-bottom-width .25s ease-in-out;
-				transition: border-bottom-width .25s ease-in-out;
-			}
+/* Styles for smaller screens (mobile view) */
+@media screen and (max-width: 980px) {
+    #nav {
+        display: none; /* Hide the full menu on small screens */
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items horizontally */
+        position: fixed; /* Fixed position to stay at the top */
+        top: 50px; /* Adjust to position just below the menu button */
+        left: 0;
+        width: 100%; /* Full width */
+        z-index: 1000; /* Ensure it sits above other content */
+        max-height: 0; /* Initially hide the menu */
+        overflow: hidden; /* Hide overflow content */
+        transition: max-height 0.3s ease-out; /* Smooth transition */
+    }
 
-			#nav a span {
-				display: block;
-				position: absolute;
-				background: #222222;
-				color: #ffffff;
-				top: -2.75em;
-				font-size: 0.3em;
-				height: 2.25em;
-				line-height: 2.25em;
-				left: 50%;
-				opacity: 0;
-				-moz-transition: opacity .25s ease-in-out;
-				-webkit-transition: opacity .25s ease-in-out;
-				-ms-transition: opacity .25s ease-in-out;
-				transition: opacity .25s ease-in-out;
-				width: 11em;
-				margin-left: -5.5em;
-			}
+    /* Display the menu when the show class is added */
+    #nav.show {
+        display: flex; /* Show the menu */
+        max-height: 500px; /* Adjust as needed */
+    }
 
-				#nav a span:after {
-					content: '';
-					display: block;
-					position: absolute;
-					bottom: -0.4em;
-					left: 50%;
-					margin-left: -0.6em;
-					border-top: solid 0.6em #222222;
-					border-left: solid 0.6em transparent;
-					border-right: solid 0.6em transparent;
-				}
+    /* Style for individual menu items in mobile view */
+    #nav a {
+        padding: 0.75em 1em; /* Adjust padding for better fit */
+        font-size: 0.9em; /* Slightly smaller font size for mobile */
+        border-top: 1px solid #000000; /* Top border for separation */
+        width: 100%; /* Full width for vertical layout */
+        text-align: center; /* Center text horizontally */
+    }
 
-			#nav a:hover {
-				opacity: 1.0;
-			}
+    /* Remove the border for the first item */
+    #nav a:first-child {
+        border-top: none; /* Remove top border for the first item */
+    }
 
-				#nav a:hover span {
-					opacity: 1.0;
-				}
+    /* Show the menu button on small screens */
+    #menu-button {
+        display: block; /* Show the menu button */
+        padding: 0.75em 1.5em; /* Padding around button text */
+        font-size: 1em; /* Font size */
+        background-color: #FFBE9F; /* Button background color */
+        color: #0a0909; /* Button text color */
+        border: none; /* Remove default button border */
+        cursor: pointer; /* Change cursor to pointer */
+        border-radius: 0.5em; /* Rounded corners */
+        transition: background-color .25s ease-in-out, color .25s ease-in-out; /* Smooth transitions */
+        position: fixed; /* Fixed position at the top */
+        top: 10px; /* Adjust as needed */
+        left: 50%; /* Center horizontally */
+        transform: translateX(-50%); /* Center horizontally */
+        z-index: 1000; /* Ensure it sits above other content */
+    }
 
-			#nav a.active {
-				opacity: 1.0;
-			}
-
-				#nav a.active:after {
-					border-bottom-width: 0.5em;
-				}
-
-		@media screen and (max-width: 980px) {
-
-			#nav a span {
-				display: none;
-			}
-
-		}
+    /* Style for menu button on hover */
+    #menu-button:hover {
+        background-color: #444444; /* Darker background on hover */
+        color: #ffffff; /* Button text color on hover */
+    }
+}
 
 /* Wrapper */
 
