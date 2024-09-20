@@ -72,6 +72,24 @@ input, select, textarea {
 	appearance: none;
 }
 
+.rdv-button {
+	background-color: #FFBE9F;
+	color: white;
+	padding: 15px 30px;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	text-decoration: none;
+	transition: background-color 0.3s ease;
+}
+
+.rdv-button:hover {
+	background-color: #FECFB2;
+}
+
 /* Row */
 
 	.row {
